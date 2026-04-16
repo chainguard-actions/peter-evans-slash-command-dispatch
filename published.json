@@ -1,0 +1,4 @@
+{
+  "upstream": "peter-evans/slash-command-dispatch",
+  "version": "v5.0.2"
+}
