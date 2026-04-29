@@ -1,6 +1,12 @@
 # peter-evans/slash-command-dispatch
 
-Hardened GitHub Action by [Chainguard](https://www.chainguard.dev).
+Hardened by [Chainguard](https://www.chainguard.dev) from the upstream action at [https://github.com/peter-evans/slash-command-dispatch](https://github.com/peter-evans/slash-command-dispatch).
+
+## Versions
+
+| Version | Tag | Upstream commit |
+|---------|-----|-----------------|
+| v5.0.2 | [`v5.0.2`](https://github.com/chainguard-actions/slash-command-dispatch/tree/v5.0.2) | — |
 
 ## Privacy
 
