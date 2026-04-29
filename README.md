@@ -1,5 +1,7 @@
 # peter-evans/slash-command-dispatch
 
+A GitHub action that facilitates \"ChatOps\" by creating repository dispatch events for slash commands
+
 Hardened by [Chainguard](https://www.chainguard.dev) from the upstream action at [https://github.com/peter-evans/slash-command-dispatch](https://github.com/peter-evans/slash-command-dispatch).
 
 ## Versions
