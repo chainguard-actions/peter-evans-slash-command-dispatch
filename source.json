@@ -1,4 +1,6 @@
 {
-  "upstream": "peter-evans/slash-command-dispatch",
-  "version": "v5.0.2"
+  "owner": "peter-evans",
+  "repo": "slash-command-dispatch",
+  "version": "",
+  "url": "https://github.com/peter-evans/slash-command-dispatch"
 }

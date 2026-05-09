@@ -2,5 +2,6 @@
   "owner": "peter-evans",
   "name": "slash-command-dispatch",
   "visibility": "internal",
-  "description": "A GitHub action that facilitates \\\"ChatOps\\\" by creating repository dispatch events for slash commands"
+  "description": "A GitHub action that facilitates \\\"ChatOps\\\" by creating repository dispatch events for slash commands",
+  "block_publish": false
 }
