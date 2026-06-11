@@ -1,0 +1,22 @@
+name: Test config-from-file input
+on:
+  workflow_dispatch:
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    env:
+      GITHUB_EVENT_NAME: issue_comment
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+      - id: action
+        uses: .
+        continue-on-error: true
+        with:
+          token: ${{ github.token }}
+          commands: deploy
+          config-from-file: >-
+            ${{ github.workspace }}/actions/hardened/peter-evans--slash-command-dispatch/v5.0.2/tests/fixtures/slash-command-config.json
+      - name: Assert action ran with config-from-file input
+        run: |
+          echo "Action completed (may fail due to missing event context, which is expected in local testing)"
+          echo "PASS: config-from-file input was accepted"

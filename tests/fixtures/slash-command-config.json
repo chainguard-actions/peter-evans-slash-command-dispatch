@@ -1,0 +1,11 @@
+[
+  {
+    "command": "deploy",
+    "permission": "write",
+    "issue_type": "both",
+    "repository": "",
+    "event_type_suffix": "-command",
+    "static_args": [],
+    "dispatch_type": "repository"
+  }
+]
