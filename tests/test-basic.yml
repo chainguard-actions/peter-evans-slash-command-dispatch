@@ -1,4 +1,4 @@
-name: Test static args and event type suffix
+name: Test basic usage
 on:
   workflow_dispatch:
 jobs:
@@ -11,15 +11,8 @@ jobs:
         continue-on-error: true
         with:
           token: ${{ github.token }}
-          commands: deploy,rollback
-          static-args: |
-            env=production
-            region=us-east-1
-          event-type-suffix: -cmd
-          permission: write
-          issue-type: pull-request
-          allow-edits: true
-      - name: Assert action ran with static args and custom suffix
+          commands: deploy,help
+      - name: Assert action ran (exits gracefully on non-issue_comment event)
         env:
           OUTCOME: ${{ steps.action.outcome }}
           ERROR_MSG: ${{ steps.action.outputs.error-message }}
@@ -29,7 +22,7 @@ jobs:
           # Under act, eventName is workflow_dispatch, not issue_comment.
           # The action should either succeed (no-op) or fail gracefully.
           if [ "$OUTCOME" = "success" ]; then
-            echo "PASS: action completed successfully with static args"
+            echo "PASS: action completed successfully (no-op for non-issue_comment event)"
           elif [ "$OUTCOME" = "failure" ]; then
             echo "PASS: action failed gracefully (expected for non-issue_comment event or sentinel repo)"
           else

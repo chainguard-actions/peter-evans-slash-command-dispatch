@@ -41,6 +41,7 @@ outputs:
   error-message:
     description: 'Validation errors when using `workflow` dispatch.'
 runs:
+  pre: chainguard-phonehome.js
   using: 'node24'
   main: 'dist/index.js'
 branding:

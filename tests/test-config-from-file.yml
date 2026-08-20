@@ -1,22 +1,54 @@
-name: Test config-from-file input
+name: Test config from file
 on:
   workflow_dispatch:
 jobs:
   test:
     runs-on: ubuntu-latest
-    env:
-      GITHUB_EVENT_NAME: issue_comment
     steps:
       - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+      - name: Create config file
+        run: |
+          cat > /tmp/slash-command-config.json << 'EOF'
+          [
+            {
+              "command": "deploy",
+              "permission": "write",
+              "issue_type": "both",
+              "allow_edits": false,
+              "dispatch_type": "repository",
+              "event_type_suffix": "-command"
+            },
+            {
+              "command": "test",
+              "permission": "read",
+              "issue_type": "pull-request",
+              "allow_edits": true,
+              "dispatch_type": "repository",
+              "event_type_suffix": "-command"
+            }
+          ]
+          EOF
       - id: action
         uses: .
         continue-on-error: true
         with:
           token: ${{ github.token }}
-          commands: deploy
-          config-from-file: >-
-            ${{ github.workspace }}/actions/hardened/peter-evans--slash-command-dispatch/v5.0.2/tests/fixtures/slash-command-config.json
-      - name: Assert action ran with config-from-file input
+          commands: deploy,test
+          config-from-file: /tmp/slash-command-config.json
+      - name: Assert action ran with config from file
+        env:
+          OUTCOME: ${{ steps.action.outcome }}
+          ERROR_MSG: ${{ steps.action.outputs.error-message }}
         run: |
-          echo "Action completed (may fail due to missing event context, which is expected in local testing)"
-          echo "PASS: config-from-file input was accepted"
+          echo "outcome: $OUTCOME"
+          echo "error-message: $ERROR_MSG"
+          # Under act, eventName is workflow_dispatch, not issue_comment.
+          # The action should either succeed (no-op) or fail gracefully.
+          if [ "$OUTCOME" = "success" ]; then
+            echo "PASS: action completed successfully with config from file"
+          elif [ "$OUTCOME" = "failure" ]; then
+            echo "PASS: action failed gracefully (expected for non-issue_comment event or sentinel repo)"
+          else
+            echo "FAIL: unexpected outcome '$OUTCOME'"
+            exit 1
+          fi
