@@ -8,7 +8,7 @@ Hardened by [Chainguard](https://www.chainguard.dev) from the upstream action at
 
 | Version | Tag | Upstream commit |
 |---------|-----|-----------------|
-| v5.0.2 | [`v5.0.2`](https://github.com/chainguard-actions/peter-evans-slash-command-dispatch/tree/v5.0.2) | — |
+| v5.0.2 | [`v5.0.2`](https://github.com/chainguard-actions/peter-evans-slash-command-dispatch/tree/v5.0.2) | [`9bdcd79`](https://github.com/peter-evans/slash-command-dispatch/commit/9bdcd7914ec1b75590b790b844aa3b8eee7c683a) |
 
 ## Privacy
 
